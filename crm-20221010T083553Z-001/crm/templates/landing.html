@@ -1,0 +1,37 @@
+{% extends 'base.html'  %}
+
+{% block  content %}
+<style>
+  {% comment %} *,*:after,*:before{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+  body{
+    font-family: arial;
+    font-size: 16px;
+    margin: 0;
+    background:linear-gradient(to right bottom, #d13cff, #031f6a);
+    color: #000;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  } {% endcomment %}
+</style>
+<body>
+    <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+      <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" src="https://img.etimg.com/thumb/msid-81773160,width-1070,height-580,imgsize-126697,overlay-etrise/photo.jpg">
+      <div class="text-center lg:w-2/3 w-full">
+        <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900" style="color: #485FE5;"><b>CRM for Small Scale Industries</b></h1>
+        <p class="mb-8 leading-relaxed">
+            Build your customer relationship with BuyByeQ CRM.    
+        </p>
+        <div class="flex justify-center">
+        </div>
+      </div>
+    </div>
+  </body>
+  {% endblock content %}

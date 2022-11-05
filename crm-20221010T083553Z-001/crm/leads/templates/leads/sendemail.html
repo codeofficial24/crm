@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    h1{
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 35px;
+        line-height: 4px;
+        color: #000000;
+    }
+</style>
+<div class="info">
+    <div class="container" style="text-align:center;">
+        <h1>Email Sent</h1><br>
+        <a href="{% url 'leads:lead-list' %}" style="color: #7F71EA;">Go back to leads</a>
+    </div>
+</div>
+{% endblock %}

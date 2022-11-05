@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<section class="text-gray-700 body-font bgcolor" >
+    <div class="container px-5 py-24 mx-auto flex flex-wrap">
+        <div class="w-full mb-6 py-6 flex justify-between items-center border-b border-gray-200" >
+            <div>
+                <h1 style="color: #000000;font-weight: 600;font-size: 40px;line-height: 48px;">AGENTS</h1>
+            </div>
+            <div>
+                <a style="color: #8272F5;" href="{% url 'agents:agent-create' %}">
+                  <i class="fas fa-plus"></i>
+                  Create a new agent
+                </a>
+            </div>
+        </div>
+      <div class="flex flex-wrap -m-4">
+        {% for agent in agents %}
+        <div class="p-4 lg:w-1/2 md:w-full">
+            <div class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col"style="background: #8E7FFE;box-shadow: 0px 10px 30px rgba(54, 159, 255, 0.4);border-radius: 20px;width: 400px;height: 135px;">
+                <div class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
+                  <img src="https://cdn.iconscout.com/icon/free/png-128/agent-broker-real-estate-rate-rent-home-house-3-11963.png" style="border-radius: 50%;"></img>
+                </div>
+                <div class="flex-grow">
+                  <h2 style="font-weight: 500;font-size: 28px;color: #FFFFFF;">
+                    {{ agent.agent_name }}</h2>
+                  <a class="mt-3 text-indigo-500 inline-flex items-center">
+                    <a href="{% url 'agents:agent-detail' agent.pk %}" style="color: #FFFFFF;">View this Agent <i class="fa-solid fa-arrow-right"></i></a>
+                  </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+</section>
+        
+        
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block content %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    page{position: relative;
+    width: 1440px;
+    height: 1300px;
+    background: #FFFFFF;
+    }
+    .box{
+        box-sizing: border-box;
+        position: absolute;
+        width: 428px;
+        height: 50px;
+        border-style: outset;
+        border: 2px solid #D9D9D9;
+        border-radius: 8px;
+    }
+    .head{
+        position: absolute;
+        width: 211px;
+        height: 48px;
+        left: 160px;
+        top: 100px;
+        font-weight: 700;
+        font-size: 33px;
+        line-height: 48px;
+        text-align: center;
+        color: #7F71EA;
+    }
+    .btn{
+        position: absolute;
+        width: 300px;
+        height: 50px;
+        left: 1033px;
+        top: 780px;
+        background: #8E7FFE;
+        color: #FFFFFF;
+        border-radius: 10px;
+        
+    }
+    .name{
+        position: absolute;
+        width: 180px;
+        height: 29px;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 24px;
+        color: #8E7FFE;
+    }
+    .icon{
+        position: absolute;
+        vertical-align: middle;
+        width: 50px;
+        height: 50px;
+        left: 110px;
+        top: 100px;
+        border-radius: 50%;
+    }
+</style>
+<body class="page">
+    <h1 class="head">NEW LEAD</h1>
+    <img class="icon" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/leads-6-890106.png"></img>
+    <form method="post" action=".">
+            {% csrf_token %}
+            <div>
+                <lable class="name" style="left: 100px; top: 190px;">First Name : </lable>
+                {{ form.first_name }}
+                <lable class="name" style="left: 781px; top: 190px;" >Last Name : </lable>
+                {{ form.last_name }} 
+                <lable class="name" style="left: 100px; top: 280px;">Agent : </lable>
+                {{ form.agent }}
+                <lable class="name" style="left: 781px; top: 280px;">Status : </lable>
+                {{ form.status }}
+                <lable class="name" style="left: 100px; top: 370px;">Email : </lable>
+                {{form.email}}
+                <lable class="name" style="left: 781px; top: 370px;">Phone : </lable>
+                {{ form.phone_number }}
+                <lable class="name" style="left: 100px; top: 460px;">Location : </lable>
+                {{ form.location }}
+                <lable class="name" style="left: 781px; top: 460px;">Pin-code : </lable>
+                {{ form.pincode }}
+                <lable class="name" style="left: 100px; top: 550px;">Source : </lable>
+                {{ form.source }}
+                <lable class="name" style="left: 781px; top: 550px;">Stage : </lable>
+                {{ form.stage }}
+                <lable class="name" style="left: 100px; top: 640px;">Size : </lable>
+                {{ form.size }}
+                <lable class="name" style="left: 781px; top: 640px;">Designation : </lable>
+                {{ form.designation }}                
+            </div>
+            <button class="btn" type="submit">Submit</button>
+    </form>  
+</body>
+{% endblock %}

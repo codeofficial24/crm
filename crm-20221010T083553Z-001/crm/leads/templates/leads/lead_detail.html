@@ -1,0 +1,330 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+      .sidenav {
+        height: 100%;
+        width: 400px;
+        position: fixed;
+        text-align: center;
+        z-index: 1;
+        top: 0px;
+        left: 0px;
+        background: #eee;
+        overflow-x: hidden;
+        padding-top: 100px;
+        background: linear-gradient(359.99deg, rgba(160, 70, 240, 0.348) 9.51%, rgba(251, 199, 212, 0.378) 107.37%);
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+      }
+      
+      .sidenav h1{
+        position: relative;
+        top:180px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 35px;
+        line-height: 4px;
+        color: #000000;
+      }
+      .sidenav i {
+        padding: 6px 1px 4px 10px;
+        position: relative;
+        top: 190px;
+        font-weight: 400;
+        font-size: 35px;
+        font-size: 25px;
+        display: block;
+        color: #00000;
+      }
+      .main-profile-img {
+        position: absolute;
+        left: 120px;
+        top: 95px; 
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border-style: solid;
+        border-color: #FFFFFF;
+        box-shadow: 0 0 8px 3px #B8B8B8;
+    }
+    .edit{
+      position: absolute;
+      left: 220px;
+      top: 100px;
+      border-radius: 50%;
+      border-style: solid; 
+      width: 30px;
+      height: 30px;
+    }
+
+      .main {
+        margin-right: 400px;
+        font-size: 25px;
+        padding: 10px 0px;
+      }
+      div.content {
+        
+        margin-left: 450px;
+        padding: 0px 0px;
+        height: 1000px;
+      } 
+
+    .collapsible {
+      width: 700px;
+      height: 50px;
+      background: #8E7FFE;
+      border-radius: 11px;
+      color: white;
+      cursor: pointer;
+      padding: 18px 20px;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 25px;
+      line-height: 9px;
+    }
+    
+    .active, .collapsible:hover {
+      background-color: #23BB86;
+    }
+    
+    .collapsible:after {
+      content: '\002B';
+      color: white;
+      font-weight: bold;
+      float: right;
+      margin-left: 5px;
+    }
+    
+    .active:after {
+      content: "\2212";
+    }
+    
+    .content2 {
+      padding: 0 18px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
+      width: 700px;
+      display:flex;
+      flex: 1 1 auto;
+      left: 600px;
+      top: 464px;
+      background: rgba(142, 127, 254, 0.34);
+    }
+    .left-half {
+      flex: 1;
+      display: flex;
+      text-overflow: hidden;
+    }
+    
+    .right-half {
+      flex: 1 ;
+      font-family: 'Inter';
+      font-style: normal;
+      display: flex;
+      text-overflow: hidden;
+    }
+    .box{
+      display: flex;
+      text-overflow: hidden;
+      padding: 10px;
+      background: #F5F5F5;
+      border-radius: 20px;
+      box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    .com{
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 30px;
+      line-height: 60px;
+      color: #7F71EA;
+    }
+    .btn {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 12px 25px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 20px;
+      margin: 3px 2px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+      background-color: white; 
+      color: black; 
+      border: 2px solid #8E7FFE;;
+      border-radius: 12px;
+    }
+       
+    .btn:hover {
+      background-color: #4CAF50;
+      color: white;
+    }
+</style>
+<link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<body>
+  <!-- Sidebar -->
+  <div class="sidenav">
+    <img src="https://cdn-icons-png.flaticon.com/512/147/147142.png" class="main-profile-img">
+    <a href="{% url 'leads:lead-update' lead.pk %}"><img class="edit"src="https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/write-circle-green-512.png"></img></a>
+    <div>
+      <h1>{{ lead.first_name }} {{lead.last_name}}</h1>
+      <i>Location: {{lead.location}},{{lead.pincode}}</i>
+      <i>{{lead.email}}</i>
+      <i>{{lead.phone_number}}</i>
+      <i>lead designation: {{lead.designation}}</i>
+      <i>Lead stage: {{lead.stage}}</i>
+      <i>Lead age: {{age}} days</i>
+      <i>Lead size: {{lead.size}}</i>
+      <center><i style =" color: #FFFFFF;width: 150px;height: 50px;background: black;border-radius: 5px;">convert</i></center>
+    </div>
+  </div>
+  <div class="main">
+      <div class="content">
+        <h1><b>Previous Interactions</b></h1><br>
+        {% for i in Lead_communication reversed %}  
+        <div style="padding: 15px;">
+          <button class="collapsible">Date : {{i.Date_created}}</button>
+          <div class="content2">
+            {% comment %} <div class="left-half">
+              Type : {{i.Type}}<br>
+              Proablity:{{i.proablity}}
+            </div> {% endcomment %}
+            <div>
+              Message :{{i.message}}
+            </div><hr>
+          </div>
+        </div>
+        {% endfor %}
+        {% comment %} <form method="post" action=".">
+          {% csrf_token %}
+          {{form.as_p}}
+          <button type="submit" id ="btn2">Submit</button><br> 
+        </form>  
+        <div>
+          <i>Demo:</i>
+          <input type="checkbox" id="check"><br><br></input>
+          <a href="{% url 'leads:lead-demo' lead.pk %}">
+            <button disabled="true" id="btn">Shedule</button>
+          </a>
+        </div> {% endcomment %}
+        <div>
+          <button class="btn" onclick="showForm(1)">Communication</button>
+          <button class="btn" onclick="showForm(2)">Activity</button>
+          <form method="post" id="form1">
+            {%csrf_token%}
+            <div>
+              {{form.lead_id}}
+              {% comment %} <lable class="com">Type : </lable>
+              {{ form.Type }}
+              <lable class="com">Proablity : </lable>
+              {{ form.proablity }} {% endcomment %}
+              <lable class="com">Message : </lable>
+              {{ form.message }}
+              <button type="submit" style ="color: #FFFFFF;width: 250px;height: 50px;background: #23BB86;border-radius: 5px;" >Submit</button>
+            </div> 
+          </form>
+          <form method="post" id="form2">
+            {%csrf_token%}
+            <div>
+              {{Lead_activity_form.lead_id}}
+              <lable class="com">Sheduled date : </lable>
+              {{Lead_activity_form.scheduled_date }}
+              <lable class="com">Actual date : </lable>
+              {{ Lead_activity_form.actual_date }}
+              <lable class="com">Activity : </lable>
+              {{Lead_activity_form.activity_name}}</br>
+              <lable class="com">Status : </lable>
+              {{Lead_activity_form.demo_status}}
+              <button type="submit" style ="color: #FFFFFF;width: 250px;height: 50px;background: #23BB86;border-radius: 5px;" >Submit</button>
+            </div> 
+          </form>
+        <div>
+          <a href="{% url 'leads:lead-list' %}" style="color: #7F71EA;"><i class="fa-solid fa-angle-left"></i>  Go back to leads</a><br>
+          {% comment %} <a style="color: #F53838; position: relative; bottom: 0px; left: 500px" href="{% url 'leads:lead-delete' lead.pk %}">
+            <i class="fa-solid fa-trash-can" ></i>Delete
+          </a><br> {% endcomment %}
+          <a style="color: #F53838;" href="{% url 'leads:help' lead.pk %}">
+            <i class="fa-solid fa-download"></i>Generate Quoation
+          {% comment %} </a><br>
+          <a style="color: #F53838;" href="{% url 'leads:sendEmail' lead.pk %}">
+            <i class="fa-solid fa-paper-plane"></i>send email
+          </a><br> {% endcomment %}
+        </div>
+      </div>
+      </div>
+  </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+      <script type="text/javascript">
+        $(document).ready(function(){
+          var a = JSON.parse("{{ lead.pk|escapejs }}");
+          $("#lead_id").val(a);
+        }); 
+        $(document).ready(function(){
+          var a = JSON.parse("{{ lead.pk|escapejs }}");
+          $("#activity_id").val(a);
+        }); 
+       {% comment %} $(document).ready(function(){
+          $("#check").on("change",function(){
+            var checVal = $("#check").val();
+            if($("#check").is(":checked")){
+              $("#btn").attr("disabled",false);
+            }
+            else{
+              $("#btn").attr("disabled",true);
+            }
+          });
+        }); {% endcomment %}
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+        
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight){
+              content.style.maxHeight = null;
+            } else {
+              content.style.maxHeight = content.scrollHeight + "px";
+            } 
+          });
+        }
+        var form1 = document.getElementById('form1');
+        var form2 = document.getElementById('form2');
+        form2.style.display = "none";
+        form1.style.display = "block";
+
+        function showForm(x){
+        if(x==1){ /* Check what form should be shown */
+        form1.style.display = "block";
+        form2.style.display = "none";
+        }else if(x==2) {
+        form1.style.display = "none";
+        form2.style.display = "block";
+        }
+      };
+        {% comment %} $(document).ready(function(){
+          $("#btn2").click(function(){
+            var inputval = $("#proablity").val();
+            if($("#proablity").val()== 100){
+              alert("Submited successfully . Please schedule Demo.");
+            }
+            else{
+              alert("Are you sure to submit?");
+            }
+          });
+        }); {% endcomment %}
+      </script>
+</body>
+
+        
+       
+{% endblock %}

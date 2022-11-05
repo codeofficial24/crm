@@ -1,0 +1,123 @@
+{% extends 'base.html'  %}
+
+{% block  content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<style>
+  .page{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+  }
+  .head{
+        font-weight: 500;
+        font-size: 50px;
+        line-height: 70px;
+        display: flex;
+        align-items: center;
+        line-height: 1em;
+        color: #000000;
+  }
+  .rightbox {
+    height: 100%;
+    width: 500px;
+    position: fixed;
+    z-index: 1;
+    top: 140px;
+    right: 10px;
+    overflow-x: hidden;
+    padding-top: 100px;
+  }
+  .rightbox h1 {
+    position: absolute;
+    top: 0px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;   
+    color: #8E7FFE
+  }
+</style>
+<link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<div>
+  <h1 class="head">ENGINEERING INNOVATION</h1>
+  <div class="head" style="font-size: 40px;color: #485FE5;">
+    <p>MADE EASY WITH</p>
+  </div>
+  <p class="head" style="color: #485FE5;"><b>BuyByeQ CRM</b></p><br>
+  <div>
+    <form id="form" method="GET" action="#" style=>
+      <select style="font-weight: 400;font-size: 24px;line-height: 29px;background: rgba(142, 127, 254, 0.92);box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);border-radius: 5px;color: #F1F5F9;" name="stats" id="stats">
+        <option value="week">Weekly</option>
+        <option value="daily">Daily</option>
+        <option value="month">Monthly</option>
+        <option value="year">Yearly</option>
+      </select>
+    </form>
+    <div>
+      <h2 style="text-transform: uppercase;color: #FF5B5A;">LEADS</h2>
+      <p style="font-weight: 600;font-size: 45px;color: #454256;">{{total}}</p>
+    </div>
+    <div style="position: absolute;left: 350px;top: 272px;">
+      <p style="color: #FF5B5A;">ACTIVITYS TODAY</p>
+      <p style="font-weight: 600;font-size: 45px;color: #454256;">{{activitytotal}}</p>
+    </div>
+  </div>
+  <canvas id="myChart" style="top: 50px; width:100%;max-width:500px;"></canvas>
+</div>
+<div class = "rightbox">
+  <h1>Activitys</h1>
+  <form style="position: absolute;top: 50px;" method="GET" action="" id="my_form" >
+    <input type="date" name="search" id='check' style="background: rgba(142, 127, 254, 0.92);box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);border-radius: 5px;"/>
+    {% comment %} <i class="fa-solid fa-calendar-days"></i> {% endcomment %}
+  </form>
+  <h2 style="position: absolute;top: 25px;">Date : {{t_date}}</h2>
+    {% for i in activity %}
+    <div style="padding: 10px;">
+      <div style="width: 350px;height: 105px;background: #8E7FFE;border-radius: 10px;"><a href="{% url 'leads:lead-detail' i.lead_id %}" style="color: #FFFFFF;">
+        <h2 style="font-weight: 600; font-size: 20px;color: #FFFFFF;position:relative; left:30px; top: 10px;">
+          {{ i.lead_id.first_name }} {{i.lead_id.last_name}}
+        </h2>
+        <p style="color: #FFFFFF;position:relative; left:30px;top: 10px;">Activity : {{i.activity_name}}</p>
+        <p style="color: #FFFFFF;position:relative; left:30px;top: 10px;">Agent : {{i.lead_id.agent}}</p></a>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+<script type="text/javascript">
+  var xValues = ["Jan", "Feb", "Mar", "Apr", "May" ,"Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+  var yValues = [100, 200, 300, 400, 500 , 600 , 700 , 800 , 900 ,1000 , 1100 , 1200];
+  var barColors = ["red", "green","blue","#33cc33","#4A52FF" , "#58CEFF" , "#b91d47","#AB53DB","#2b5797","#FF5B5A"," #FFBC54" , "#00A28A"];
+  
+  new Chart("myChart", {
+    type: "bar",
+    data: {
+      labels: xValues,
+      datasets: [{
+        backgroundColor: barColors,
+        data: yValues
+      }]
+    },
+    options: {
+      legend: {display: false},
+      title: {
+        display: true,
+        text: "Monthly Visitors"
+      }
+    }
+  });
+  $(document).ready(function(){
+    $("#check").on("change",function(){
+    var form = document.getElementById("my_form");
+    form.submit();
+  });});
+  $(document).ready(function(){
+    $("#stats").on("change",function(){
+    var form = document.getElementById("form");
+    form.submit();
+    });
+  });
+  </script>
+  {% endblock content %}
+  
